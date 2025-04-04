@@ -1,0 +1,107 @@
+\usepackage[utf8]{inputenc}
+% \usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{url}
+\usepackage{microtype}
+\usepackage[a4paper,left=35mm,right=20mm,top=30mm,bottom=30mm]{geometry}
+
+
+% Písmo pro nadpisy
+\usepackage{helvet}
+
+% Řádkování
+\usepackage{setspace}
+\onehalfspacing
+
+% \usepackage{expl3}
+
+\usepackage[czech]{babel}
+\usepackage[
+  backend=biber,        % if we want unicode and many other features (biber is already by default)
+  style=iso-numeric, % or another iso-<style>
+]{biblatex}
+\usepackage{csquotes}
+
+%\usepackage[sfdefault,light]{roboto}
+\usepackage[hidelinks,pdftex]{hyperref}
+
+\titleformat
+{\chapter} % command
+[hang] % shape
+{\sffamily\bfseries\LARGE} % format
+{\thechapter} % label
+{1em} % sep
+{
+} % before-code
+[
+] % after-code
+
+
+\titleformat{\section}{\sffamily\bfseries\Large}{\thesection}{1em}{}
+\titleformat{\subsection}{\sffamily\bfseries\large}{\thesubsection}{1em}{}
+
+\newcommand{\custtitlepage}[6]{
+    \begin{titlepage}
+    \begin{center}
+        #5
+        \vspace*{1cm}
+            
+        \Huge
+        \textbf{#1}
+            
+        \vspace{0.5cm}
+        \LARGE
+        #2
+            
+        \vspace{1.5cm}
+            
+        \textbf{#3}
+            
+        \vfill
+
+        \vspace{0.8cm}
+        
+        \begin{flushright}
+        \large
+        #3\\
+        #4\\
+        #6
+        \end{flushright}
+
+    \end{center}
+\end{titlepage}
+}
+
+\newcommand{\toc}{
+%    \pagenumbering{Roman}
+    \tableofcontents
+    \pagebreak
+    \pagenumbering{arabic}
+}
+
+\let\oldcite\cite
+\renewcommand*\cite[1]{\textsuperscript{\oldcite{#1}}}
+
+% Makro pro vytvoření stránky prohlášení
+\newcommand{\declarationpage}[2]{
+ \clearpage % Začíná na nové stránce
+    %\thispagestyle{empty} % Bez záhlaví/zápatí
+    \pagenumbering{Roman}
+    \null % Prázdný prvek pro začátek
+    \vfill % Vertikální vyplnění horní části
+    \begin{center}
+        {\Large\bfseries Prohlášení} % Velký tučný nadpis
+        \par % Odstavec
+        \vspace{1.5cm} % Menší pevná mezera
+        \parbox{0.8\textwidth}{
+            #1 % Vlastní text prohlášení
+        }
+        \vspace{1cm} % Menší pevná mezera
+        \par % Odstavec
+        #2 % Místo a datum
+    \end{center}
+    \vfill % Vertikální vyplnění dolní části
+    \clearpage % Přechod na novou stránku
+}
